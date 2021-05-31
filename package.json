@@ -4,7 +4,8 @@
     "dev": "nuxt -c client/nuxt.config.js",
     "build": "nuxt build -c client/nuxt.config.js",
     "start": "nuxt start -c client/nuxt.config.js",
-    "lint": "eslint --fix --ext .js,.vue client/"
+    "lint": "eslint --fix --ext .js,.vue client/",
+    "build-css": "node-sass --watch styles -o styles"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",

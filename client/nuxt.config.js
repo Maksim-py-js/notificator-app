@@ -34,7 +34,9 @@ module.exports = {
   },
 
   css: [
-    { src: '~assets/sass/app.scss', lang: 'scss' }
+    { src: '~assets/sass/app.scss', lang: 'scss' },
+    '../styles/index.css',
+    '../styles/main.css'
   ],
 
   plugins: [
