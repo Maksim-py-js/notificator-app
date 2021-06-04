@@ -7,7 +7,9 @@ h1, h2, h3, p, ul, li, a, div, input, button {
   padding: 0;
   list-style: none;
   text-decoration: none;
-  font-family: "Rubik"; }
+  font-family: "Rubik";
+  border: none;
+  background: none; }
 
 .input:focus {
   border: 0.10204vw solid #33CCCC; }
@@ -45,13 +47,13 @@ img {
   font-family: "Rubik";
   font-weight: 700; }
 
-.btn, .flex, .table__td, .main_admin__header, .main_admin__header-nav, .main_admin__data, .main_admin__tableBorder, .main_admin__tables_head, .main_admin__tables_nav, .main_admin__td_box, .main_admin__table_options, .main_admin__quantity_item, .main_admin__table_content, .main_admin__right_data, .moderators_modal__header, .moderators_modal__inputs, .moderators_modal__modals, .moderators_modal__footer, .moderators_modal__switch, .section__header, .section__form, .section__footer, .contact__header, .contact__inputs, .contact__footer, .contact__switch, .form__input_group, .form__footer, .header, .header__item, .assignments__tabels, .assignments__title_box, .assignments__card_top, .assignments__card_number, .assignments__card_footer, .assignments__file_btn, .assignments__card_date, .assignments .expired__table_item, .task-modal__view, .task-modal__inputs, .task-modal__input-box, .task-modal__box, .task-modal__search, .group__users-item, .notifications__content, .contacts__head, .contacts__head_buttons, .contacts__cards_quantity, .contacts__group_head, .contacts__cards, .contacts__position, .contacts__phone, .contacts__cards_pagination {
+.btn, .flex, .table__td, .main_admin__header, .main_admin__header-nav, .main_admin__data, .main_admin__tableBorder, .main_admin__tables_head, .main_admin__tables_nav, .main_admin__td_box, .main_admin__table_options, .main_admin__quantity_item, .main_admin__table_content, .main_admin__right_data, .moderators_modal__header, .moderators_modal__inputs, .moderators_modal__modals, .moderators_modal__footer, .moderators_modal__switch, .section__header, .section__form, .section__footer, .contact__header, .contact__inputs, .contact__footer, .contact__switch, .form__input_group, .form__footer, .header, .header__item, .assignments__tabels, .assignments__title_box, .assignments__card_top, .assignments__card_number, .assignments__card_footer, .assignments__file_btn, .assignments__card_date, .assignments .expired__table_item, .task-modal__inputs, .task-modal__input-box, .task-modal__box, .task-modal__box .moderators_modal__footer_buttons, .task-modal__search, .group__users-item, .notifications__content, .contacts__head, .contacts__head_buttons, .contacts__cards_quantity, .contacts__group_head, .contacts__cards, .contacts__position, .contacts__phone, .contacts__cards_pagination {
   display: flex; }
 
-.table__td, .main_admin__header, .main_admin__header-nav, .main_admin__data, .main_admin__tableBorder, .main_admin__tables_head, .main_admin__tables_nav, .main_admin__table_options, .main_admin__table_content, .moderators_modal__header, .moderators_modal__inputs, .moderators_modal__footer, .section__header, .section__form, .section__footer, .contact__header, .contact__inputs, .contact__footer, .form__footer, .header, .assignments__tabels, .assignments__card_top, .assignments__card_footer, .assignments .expired__table_item, .task-modal__box, .task-modal__search, .group__job-item, .notifications__content, .contacts__head, .contacts__cards, .contacts__phone {
+.table__td, .main_admin__header, .main_admin__header-nav, .main_admin__data, .main_admin__tableBorder, .main_admin__tables_head, .main_admin__tables_nav, .main_admin__table_options, .main_admin__table_content, .moderators_modal__header, .moderators_modal__inputs, .moderators_modal__footer, .section__header, .section__form, .section__footer, .contact__header, .contact__inputs, .contact__footer, .form__footer, .header, .assignments__tabels, .assignments__card_top, .assignments__card_footer, .assignments .expired__table_item, .task-modal__head, .task-modal__box, .task-modal__search, .group__job-item, .notifications__content, .contacts__head, .contacts__cards, .contacts__phone {
   justify-content: space-between; }
 
-.btn, .flex, .table__td, .main_admin__header, .main_admin__header-nav, .main_admin__data, .main_admin__tables_head, .main_admin__tables_nav, .main_admin__table_tr, .main_admin__user_table_tr, .main_admin__td_box, .main_admin__table_options, .main_admin__quantity_item, .main_admin__table_content, .main_admin__right_data, .moderators_modal__header, .moderators_modal__inputs, .moderators_modal__modals, .moderators_modal__footer, .moderators_modal__switch, .section__header, .section__form, .section__footer, .contact__header, .contact__footer, .contact__switch, .form__input_group, .form__footer, .header, .header__item, .assignments__title_box, .assignments__card_top, .assignments__card_number, .assignments__card_footer, .assignments__file_btn, .assignments__card_date, .assignments .expired__table_item, .task-modal__view, .task-modal__inputs, .task-modal__input-box, .task-modal__search, .group__users-item, .contacts__head, .contacts__head_buttons, .contacts__cards_quantity, .contacts__group_head, .contacts__cards, .contacts__position, .contacts__cards_pagination {
+.btn, .flex, .table__td, .main_admin__header, .main_admin__header-nav, .main_admin__data, .main_admin__tables_head, .main_admin__tables_nav, .main_admin__table_tr, .main_admin__user_table_tr, .main_admin__td_box, .main_admin__table_options, .main_admin__quantity_item, .main_admin__table_content, .main_admin__right_data, .moderators_modal__header, .moderators_modal__inputs, .moderators_modal__modals, .moderators_modal__footer, .moderators_modal__switch, .section__header, .section__form, .section__footer, .contact__header, .contact__footer, .contact__switch, .form__input_group, .form__footer, .header, .header__item, .assignments__title_box, .assignments__card_top, .assignments__card_number, .assignments__card_footer, .assignments__file_btn, .assignments__card_date, .assignments .expired__table_item, .task-modal__inputs, .task-modal__input-box, .task-modal__search, .group__users-item, .contacts__head, .contacts__head_buttons, .contacts__cards_quantity, .contacts__group_head, .contacts__cards, .contacts__position, .contacts__cards_pagination {
   align-items: center; }
 
 .btn {
@@ -1480,6 +1482,12 @@ img {
   width: 0.61224vw;
   font-size: 0; }
 
+.task-modal__head {
+  width: 100%; }
+
+.task-modal textarea {
+  width: 100%; }
+
 .task-modal__view {
   position: fixed;
   top: 0;
@@ -1490,7 +1498,9 @@ img {
   opacity: 0;
   z-index: -1;
   transition: 0.5s;
-  justify-content: center; }
+  overflow: auto;
+  display: block;
+  padding: 5.10204vw 0; }
 
 .task-modal__view[active="true"] {
   opacity: 1;
@@ -1499,6 +1509,7 @@ img {
 
 .task-modal__content {
   width: 90.5102vw;
+  margin: 0 auto;
   background: #FFFFFF;
   border: 0.05102vw solid #FFFFFF;
   box-sizing: border-box;
@@ -1577,6 +1588,9 @@ img {
   align-items: flex-start;
   margin-top: 2.09184vw; }
 
+.task-modal__box .moderators_modal__footer_buttons {
+  justify-content: flex-end; }
+
 .task-modal__editor {
   width: 46.17347vw; }
 
@@ -1595,11 +1609,13 @@ img {
   width: 35.96939vw; }
 
 .group__table {
+  min-height: 56.12245vw;
   background: #FFFFFF;
   border: 0.10204vw solid #DADCDF;
   border-radius: 0.40816vw;
   padding: 0.61224vw 1.68367vw 0.5102vw 0.40816vw;
-  margin-top: 1.02041vw; }
+  margin-top: 1.02041vw;
+  margin-bottom: 1.88776vw; }
 
 .group__job-item {
   width: 100%;
@@ -1639,8 +1655,7 @@ img {
   cursor: pointer; }
 
 .group__users {
-  opacity: 0;
-  z-index: -100;
+  display: none;
   height: 0;
   transition: 0.5s;
   border-left: 0.05102vw solid #4C4C54;
@@ -1649,8 +1664,7 @@ img {
   padding: 0; }
 
 .group__users[active="true"] {
-  opacity: 1;
-  z-index: 100;
+  display: block;
   height: auto;
   padding: 0.5102vw 0 0.91837vw;
   transition: 0.5s; }

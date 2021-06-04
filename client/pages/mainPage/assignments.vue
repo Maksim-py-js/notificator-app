@@ -271,15 +271,32 @@
 				</div>
 			</div>
 		</div>
-		<!-- <div 
+		<div 
 			class="task-modal__view" 
     		:active="`${taskModal}`" 
-		 >	
+		>	
 			<div 
 				class="task-modal__content"
     			:active="`${taskModal}`" 
 			    >
-				<h3 class="task-modal__title">Топшириқ яратиш</h3>
+			    <div class="task-modal__head flex">
+					<h3 class="task-modal__title">Топшириқ яратиш</h3>
+			    	<button 
+			    		class="task-modal__erase" 
+			    		@click="taskModal = !taskModal"
+			    	>
+						<div 
+							class="task-modal__erase-icon"
+							@click="taskModal = !taskModal"
+						>
+							<img 
+								src="@/assets/images/svg/deleteItem.svg" 
+								alt="close"
+								@click="taskModal = !taskModal"
+							>
+						</div>
+					</button>
+			    </div>
 				<div class="task-modal__inputs">
 					<input 
 						type="text" 
@@ -294,7 +311,7 @@
 							placeholder="6" 
 						>
 					</div>
-					<div class="task-modal__input-box">
+					<!-- <div class="task-modal__input-box">
 						<div class="task-modal__input-name">Кун</div>
 						<div
 							class="task-modal__date"
@@ -305,7 +322,7 @@
 					      :date-format-options="{ year: 'numeric', month: 'short', day: '2-digit', weekday: 'short' }"
 					      locale="en"
 					    ></b-calendar>
-					</div>
+					</div> -->
 					<div class="task-modal__input-box">
 						<div class="task-modal__input-name">Вақт</div>
 						<input 
@@ -318,10 +335,7 @@
 					<div class="task-modal__editor">
 						<h3 class="task-modal__title">Топшириқ матни</h3>
 						<div class="task-modal__text-field">
-							<tiptap-vuetify
-								v-model="content"
-								:extensions="extensions"
-						    />
+							<textarea name="1230" id="1230" rows="10"></textarea>
 						</div>
 						<div 
 							class="file"
@@ -356,6 +370,7 @@
 						</ul>
 					</div>
 					<div class="task-modal__data">
+						<div>
 							<div class="task-modal__search">
 	 							<input 
 									type="text" 
@@ -377,8 +392,8 @@
 									>
 										<div 
 											class="group__job-item flex"
-											@click.self="select = !select"
-											:active="select.toString()"
+											@click.self="job.is_active = !job.is_active"
+											:active="job.is_active.toString()"
 										>
 											<div class="group__job-box">
 												<span class="group__job-name">{{job.name}}</span>
@@ -386,15 +401,15 @@
 											</div>
 											<div 
 												class="group__job-button"
-												:active="open"
-												@click.stop="open = !open;"
+												:active="job.open"
+												@click.stop="job.open = !job.open;"
 											>
-												<span v-if="open">-</span>
-												<span v-else="open">+</span>
+												<span v-if="job.open">-</span>
+												<span v-else="job.open">+</span>
 											</div>
 
 										</div>
-										<ul class="group__users" :active="open.toString()">
+										<ul class="group__users" :active="job.open.toString()">
 											<li 
 												class="group__users-item"
 												v-for="user in job.users"
@@ -403,59 +418,40 @@
 												<div class="group__users-line"></div>
 												<div 
 													class="group__users-text"
-													@click.self="sselect = !sselect"
-													:active="sselect.toString()"
+													@click.self="user.is_active = !user.is_active"
+													:active="user.is_active.toString()"
 												>{{user.name}}</div>
 											</li>
 										</ul>
 									</li>
 								</ul>
 							</div>
-						</div>	
+						</div>
+						<div class="moderators_modal__footer_buttons">
+							<button class="moderators_modal__footer__button">Тозалаш</button>
+							<button class="moderators_modal__footer__button active">Сақлаш</button>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
 	</div>
 </template>
 
 <script>
-	// import { TiptapVuetify, Heading, Bold, Italic, Strike, Underline, Code, Paragraph, BulletList, OrderedList, ListItem, Link, Blockquote, HardBreak, HorizontalRule, History } from 'tiptap-vuetify'
 	export default {
-		// components: { TiptapVuetify },
 		data() {
 			return {
 				select: false,
 				sselect: false,
 				open: false,
-				extensions: [
-					History,
-					Blockquote,
-					Link,
-					Underline,
-					Strike,
-					Italic,
-					ListItem,
-					BulletList,
-					OrderedList,
-					[Heading, {
-					options: {
-					levels: [1, 2, 3]
-					}
-					}],
-					Bold,
-					Code,
-					HorizontalRule,
-					Paragraph,
-					HardBreak
-				],
 				// starting editor's content
 				content: ``,
 				chooseFiles: [],
 				file: [],
 
 
-				taskModal: true,
+				taskModal: false,
 				activeMore: false,
 				serachText: '',
 				newUnits: [
@@ -1162,61 +1158,82 @@
 				jobs: [
 					{
 						name: 'xzczxczxcz',
+						open: false,
+						is_active: false,
 						users: [
 							{
-								name: 'asdasdasd'
+								name: 'asdasdasd',
+								is_active: false
 							},
 							{
-								name: 'asdasdasd'
+								name: 'asdasdasd',
+								is_active: false
 							},
 							{
-								name: 'asdasdasd'
+								name: 'asdasdasd',
+								is_active: false
 							},
 							{
-								name: 'asdasdasd'
+								name: 'asdasdasd',
+								is_active: false
 							},
 							{
-								name: 'asdasdasd'
+								name: 'asdasdasd',
+								is_active: false
 							}
 						]
 					},
 					{
 						name: 'xzczxczxcz',
+						open: false,
+						is_active: false,
 						users: [
 							{
-								name: 'asdasdasd'
+								name: 'asdasdasd',
+								is_active: false
 							},
 							{
-								name: 'asdasdasd'
+								name: 'asdasdasd',
+								is_active: false
 							},
 							{
-								name: 'asdasdasd'
+								name: 'asdasdasd',
+								is_active: false
 							},
 							{
-								name: 'asdasdasd'
+								name: 'asdasdasd',
+								is_active: false
 							},
 							{
-								name: 'asdasdasd'
+								name: 'asdasdasd',
+								is_active: false
 							}
 						]
 					},
 					{
 						name: 'xzczxczxcz',
+						open: false,
+						is_active: false,
 						users: [
 							{
-								name: 'asdasdasd'
+								name: 'asdasdasd',
+								is_active: false
 							},
 							{
-								name: 'asdasdasd'
+								name: 'asdasdasd',
+								is_active: false
 							},
 							{
-								name: 'asdasdasd'
+								name: 'asdasdasd',
+								is_active: false
 							},
 							{
-								name: 'asdasdasd'
+								name: 'asdasdasd',
+								is_active: false
 							},
 							{
-								name: 'asdasdasd'
+								name: 'asdasdasd',
+								is_active: false
 							}
 						]
 					}

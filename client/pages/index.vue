@@ -59,6 +59,10 @@
 			return {
 				
 			}
+		},
+		mounted() {
+			// console.log($route.params);
+			// Object.prototype.active = false;
 		}
 	}
 </script>
