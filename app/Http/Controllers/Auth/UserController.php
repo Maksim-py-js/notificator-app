@@ -27,6 +27,7 @@ class UserController extends Controller
         $users = User::all();
         $data = [];
         foreach ($users as $user) {
+            $arr_tasks = [];
             $tasks = [];
             $groups = [];
 
@@ -34,6 +35,7 @@ class UserController extends Controller
             $job = Job::find($user->job);
             $userGroups = $user->groups()->get();
             $data_tasks = $user->tasks('user')->get();
+            $shipping_times = $user->shipping_times('user')->get();
 
             foreach($userGroups as $userGroup) {
                 $userGroup = Group::find($userGroup->group);
@@ -41,7 +43,18 @@ class UserController extends Controller
             }
             foreach($data_tasks as $data_task) {
                 $task = Task::find($data_task->task);
-                array_push($tasks, $task);
+                array_push($arr_tasks, $task);
+            }
+
+            foreach($arr_tasks as $task) {
+                foreach($shipping_times as $shipping_time) {
+                    if($task->id == $shipping_time->task) {
+                        array_push($tasks, compact(
+                            'task',
+                            'shipping_time'
+                        ));
+                    }
+                }
             }
 
             array_push($data, compact(
@@ -163,10 +176,5 @@ class UserController extends Controller
         } else {
             return "This user was deleted erlier";
         }
-    }
-    public function getModerators(Request $request) {
-        return 'its work';
-        $users = DB::table('users')->where('role', '=', $request->role)->get();
-        return response()->json($users);
     }
 }

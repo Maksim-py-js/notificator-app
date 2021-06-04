@@ -54,28 +54,6 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     ];
 
     /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
-    protected $appends = [
-        'photo_url',
-    ];
-
-    /**
-     * Get the profile photo URL attribute.
-     *
-     * @return string
-     */
-    public function getPhotoUrlAttribute()
-    {
-        return vsprintf('https://www.gravatar.com/avatar/%s.jpg?s=200&d=%s', [
-            md5(strtolower($this->email)),
-            $this->name ? urlencode("https://ui-avatars.com/api/$this->name") : 'mp',
-        ]);
-    }
-
-    /**
      * Get the oauth providers.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -123,5 +101,8 @@ class User extends Authenticatable implements JWTSubject //, MustVerifyEmail
     }
     public function tasks() {
         return $this->hasMany('App\Models\TaskWorkplaceUser', 'user');
+    }
+    public function shipping_times() {
+        return $this->hasMany('App\Models\ShippingTime', 'user');
     }
 }
