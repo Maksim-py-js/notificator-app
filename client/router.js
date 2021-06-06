@@ -21,24 +21,36 @@ const routes = [
       { 
         path: '/contacts', 
         name: 'contacts', 
-        component: page('mainPage/contacts.vue') 
+        component: page('mainPage/contacts.vue'),
+        children: [
+          { 
+            path: '/contacts/all', 
+            name: 'contacts', 
+            component: page('mainPage/contactsGroups/allContacts.vue') 
+          },
+          { 
+            path: '/contacts/groups', 
+            name: 'contacts', 
+            component: page('mainPage/contactsGroups/groupsContact.vue') 
+          }
+        ]
       },
       { 
         path: '/notifications', 
         name: 'notifications', 
         component: page('mainPage/notifications.vue') ,
         children: [
-            { 
-              path: '/notifications/:id', 
-              name: 'notifications', 
-              component: page('mainPage/notificationTable/_id.vue') 
-            }
-          ]
+          { 
+            path: '/notifications/:id', 
+            name: 'notifications', 
+            component: page('mainPage/notificationTable/_id.vue') 
+          }
+        ]
       },
       { 
         path: '/report', 
         name: 'report', 
-        component: page('mainPage/report.vue') 
+        component: page('mainPage/report.vue')
       }
     ]
   },

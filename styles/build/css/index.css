@@ -58,13 +58,13 @@ img {
 
 .btn {
   background: #33CCCC;
+  border-radius: 0.5102vw;
+  border: none;
   color: #fff;
   font-size: 0.91837vw;
   font-weight: 500;
   padding: 0.66327vw 0.81633vw;
-  border-radius: 0.5102vw;
   font-family: "Rubik";
-  border: none;
   line-height: 1.07143vw;
   outline: none; }
 
@@ -1083,6 +1083,12 @@ img {
   line-height: 1.17347vw;
   transition: 0.5s; }
 
+.header__item.router-link-active {
+  color: #33CCCC; }
+
+.header__item.router-link-active .heder__item_path {
+  fill: #33CCCC; }
+
 .header__item:nth-child(6) {
   margin-right: 8.36735vw; }
 
@@ -1097,9 +1103,6 @@ img {
 .header__item:hover .header__item_path {
   fill: #33CCCC;
   transition: 0.5s; }
-
-.header__item.active {
-  color: #33CCCC; }
 
 .header__icon {
   width: 1.78571vw;
@@ -1206,6 +1209,7 @@ img {
   box-shadow: 0.05102vw 0.05102vw 0.10204vw rgba(0, 0, 0, 0.25);
   border-radius: 0.5102vw;
   text-decoration: none;
+  cursor: pointer;
   margin: 0.96939vw 0 1.22449vw;
   transition: 0.6s; }
 
@@ -1481,6 +1485,46 @@ img {
   height: 0.61224vw;
   width: 0.61224vw;
   font-size: 0; }
+
+.modal__view {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(196, 196, 196, 0.4);
+  opacity: 0;
+  z-index: -1;
+  transition: 0.5s;
+  overflow: auto;
+  display: block;
+  padding: 5.10204vw 0; }
+
+.modal__view[active="true"] {
+  opacity: 1;
+  z-index: 1000;
+  transition: 0.5s; }
+
+.modal__box {
+  width: 77.44898vw;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border: 0.05102vw solid #FFFFFF;
+  box-sizing: border-box;
+  box-shadow: 0.5102vw 0.5102vw 1.02041vw 0.5102vw rgba(0, 0, 0, 0.15);
+  border-radius: 0.5102vw;
+  opacity: 0;
+  z-index: -1;
+  transition: 0.5s;
+  padding: 1.53061vw 2.80612vw 1.83673vw 3.92857vw; }
+
+.modal__box[active="true"] {
+  opacity: 1;
+  z-index: 1000;
+  transition: 0.5s; }
+
+.modal .assignments__card_text {
+  min-height: 6.17347vw; }
 
 .task-modal__head {
   width: 100%; }
@@ -1798,6 +1842,17 @@ img {
 
 .contacts__btn {
   margin-right: 0.76531vw; }
+
+.contacts .btn {
+  background: #FFFFFF;
+  border: 0.05102vw solid #DADCDF;
+  color: #AFABAB; }
+
+.contacts .btn.router-link-active {
+  background: #33CCCC;
+  border-radius: 0.5102vw;
+  border: none;
+  color: #fff; }
 
 .contacts__tables_search {
   width: 36.53061vw;

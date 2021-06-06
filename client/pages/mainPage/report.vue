@@ -17,7 +17,6 @@
 					Топшириқлар
 				</h3>
 				<b-table
-					name="asdasda"
 	                :items="moderators"
 	                :fields="moderatorsFields"
 	                :filter="moderatorsFilter"

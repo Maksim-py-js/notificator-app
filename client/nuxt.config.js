@@ -50,7 +50,8 @@ module.exports = {
   ],
 
   modules: [
-    '@nuxtjs/router'
+    '@nuxtjs/router',
+    'bootstrap-vue/nuxt'
   ],
 
   build: {

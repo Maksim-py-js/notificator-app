@@ -97,13 +97,13 @@ img {
 	@extend %d-flex;
 	@extend %ai-c;
 	background: $activeColor;
+	border-radius: vwSize(10);
+	border: none;
 	color: $whiteText;
 	font-size: vwSize(18);
 	font-weight: 500;
 	padding: vwSize(13) vwSize(16);
-	border-radius: vwSize(10);
 	font-family: $textFamily;
-	border: none;
 	line-height: vwSize(21);
 	outline: none;
 	&_icon {
@@ -1335,6 +1335,13 @@ img {
 
 		transition: 0.5s;
 
+		&.router-link-active {
+			color: $activeColor;
+			path {
+				fill: $activeColor;
+			}
+		}
+
 		&:nth-child(6) {
 			margin-right: vwSize(164);
 			.header__icon {
@@ -1350,9 +1357,6 @@ img {
 				fill: $activeColor;
 				transition: 0.5s;
 			}
-		}
-		&.active {
-			color: $activeColor;
 		}
 	}
 	&__icon {
@@ -1476,6 +1480,7 @@ img {
 		box-shadow: vwSize(1) vwSize(1) vwSize(2) rgba(0, 0, 0, 0.25);
 		border-radius: vwSize(10);
 		text-decoration: none;
+		cursor: pointer;
 
 		margin: vwSize(19) 0 vwSize(24);
 		transition: 0.6s;
@@ -1788,6 +1793,51 @@ img {
 		height: vwSize(12);
 		width: vwSize(12);
 		font-size: 0;
+	}
+}
+.modal {
+	&__view {
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-color: rgba(196, 196, 196, 0.4);
+		opacity: 0;
+		z-index: -1;
+		transition: 0.5s; 
+		overflow: auto;
+
+		display: block;
+		padding: vwSize(100) 0;
+
+		&[active="true"] {
+			opacity: 1;
+			z-index: 1000;
+			transition: 0.5s;
+		}
+	}
+	&__box {
+		width:  vwSize(1518); 
+		margin: 0 auto;
+		background: #FFFFFF;
+		border: vwSize(1) solid #FFFFFF;
+		box-sizing: border-box;
+		box-shadow: vwSize(10) vwSize(10) vwSize(20) vwSize(10) rgba(0, 0, 0, 0.15);
+		border-radius: vwSize(10);
+		opacity: 0;
+		z-index: -1;
+		transition: 0.5s;
+		padding: vwSize(30) vwSize(55) vwSize(36) vwSize(77);
+
+		&[active="true"] {
+			opacity: 1;
+			z-index: 1000;
+			transition: 0.5s;
+		}
+	}
+	.assignments__card_text {
+		min-height: vwSize(121);
 	}
 }
 .task-modal {
@@ -2174,6 +2224,19 @@ img {
 	&__btn {
 		margin-right: vwSize(15);
 	}
+	.btn {
+		background: #FFFFFF;
+		border: vwSize(1) solid #DADCDF;
+
+		color: #AFABAB;
+		&.router-link-active {
+			background: $activeColor;
+			border-radius: vwSize(10);
+			border: none;
+			color: #fff;
+		}
+	}
+
 	&__tables_search {
 		width: vwSize(716);
 		outline: none;
