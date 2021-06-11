@@ -520,7 +520,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="table scroll">
+					<div class="table">
 						<div class="table__td table__discription">
 							<div class="table__discription_item">Дастур</div>
 							<div class="table__discription_item">СМС</div>
@@ -533,7 +533,7 @@
 							<div class="table__title dateTr">Юборилди</div>
 							<div class="table__title dateTr">Танишди</div>
 						</div>
-						<div class="table__border">
+						<div class="table__border scroll">
 							<div 
 								class="table__td table__data"
 								v-for="item in tableData"
@@ -548,6 +548,7 @@
 							</div>
 						</div>
 					</div>
+					<button class="assignments__modal-close btn light" @click="cardModal = !cardModal">Ёпиш</button>
 				</div>
 			</div>
 		</div>

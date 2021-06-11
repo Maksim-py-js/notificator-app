@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="header">
-			<h1 class="header__title">Топшириқлар</h1>
+			<h1 class="header__title">{{mainTitle}}</h1>
 			<date/>
 			
 			<router-link to="/assignments" class="header__item">
@@ -52,17 +52,28 @@
 	import date from '@/components/date.vue'
 	export default {
 		layout: 'main',
+		fetch({ redirect, route }) { 
+			this.roteValue = route.path;
+	        if ( route.path == '/' ) { 
+	            redirect('/assignments') 
+	        } 
+	    },
 		components: {
 			date
 		},
 		data() {
 			return {
-				
+				roteValue: '',
 			}
 		},
 		mounted() {
 			// console.log($route.params);
 			// Object.prototype.active = false;
+		},
+		computed: {
+			mainTitle() {
+				return 'Топшириқлар';
+			}
 		}
 	}
 </script>

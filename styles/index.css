@@ -1486,6 +1486,11 @@ img {
   width: 0.61224vw;
   font-size: 0; }
 
+.assignments__modal-close {
+  display: block;
+  width: auto;
+  margin: 4.03061vw 0 0 auto; }
+
 .modal__view {
   position: fixed;
   top: 0;

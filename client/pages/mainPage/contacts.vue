@@ -34,6 +34,12 @@
 
 <script>
 	export default {
+		fetch({ redirect, route }) { 
+        	console.log(route.path)
+	        if ( route.path == '/contacts/' || route.path == '/contacts' ) { 
+	            redirect('/contacts/groups') 
+	        } 
+	    },
 		data() {
 			return {
 				moderatorsFilter: ''

@@ -99,6 +99,61 @@
 							</div>
 						</button>
 				    </div>
+				    <div class="task-modal__search">
+						<input 
+							type="text" 
+							class="task-modal__search-input"
+							placeholder="Излаш" 
+						>
+						<button class="task-modal__erase">
+							<div class="task-modal__erase-icon">
+								<img src="@/assets/images/svg/deleteItem.svg" alt="delete">
+							</div>
+						</button>
+					</div>
+					<div class="group__table">
+						<ul class="group__job"> 
+							<li 
+								class="group__job-field"
+								v-for="job in jobs"
+								:key="job.index"
+							>
+								<div 
+									class="group__job-item flex"
+									@click.self="job.is_active = !job.is_active"
+									:active="job.is_active.toString()"
+								>
+									<div class="group__job-box">
+										<span class="group__job-name">{{job.name}}</span>
+										<span class="group__job-count">{{job.users.length}}</span>
+									</div>
+									<div 
+										class="group__job-button"
+										:active="job.open"
+										@click.stop="job.open = !job.open;"
+									>
+										<span v-if="job.open">-</span>
+										<span v-else="job.open">+</span>
+									</div>
+
+								</div>
+								<ul class="group__users" :active="job.open.toString()">
+									<li 
+										class="group__users-item"
+										v-for="user in job.users"
+										:key="user.index"
+									>
+										<div class="group__users-line"></div>
+										<div 
+											class="group__users-text"
+											@click.self="user.is_active = !user.is_active"
+											:active="user.is_active.toString()"
+										>{{user.name}}</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -111,6 +166,89 @@
 			return {
 				groupModal: false,
 				moderatorsFilter: '',
+				jobs: [
+					{
+						name: 'xzczxczxcz',
+						open: false,
+						is_active: false,
+						users: [
+							{
+								name: 'asdasdasd',
+								is_active: false
+							},
+							{
+								name: 'asdasdasd',
+								is_active: false
+							},
+							{
+								name: 'asdasdasd',
+								is_active: false
+							},
+							{
+								name: 'asdasdasd',
+								is_active: false
+							},
+							{
+								name: 'asdasdasd',
+								is_active: false
+							}
+						]
+					},
+					{
+						name: 'xzczxczxcz',
+						open: false,
+						is_active: false,
+						users: [
+							{
+								name: 'asdasdasd',
+								is_active: false
+							},
+							{
+								name: 'asdasdasd',
+								is_active: false
+							},
+							{
+								name: 'asdasdasd',
+								is_active: false
+							},
+							{
+								name: 'asdasdasd',
+								is_active: false
+							},
+							{
+								name: 'asdasdasd',
+								is_active: false
+							}
+						]
+					},
+					{
+						name: 'xzczxczxcz',
+						open: false,
+						is_active: false,
+						users: [
+							{
+								name: 'asdasdasd',
+								is_active: false
+							},
+							{
+								name: 'asdasdasd',
+								is_active: false
+							},
+							{
+								name: 'asdasdasd',
+								is_active: false
+							},
+							{
+								name: 'asdasdasd',
+								is_active: false
+							},
+							{
+								name: 'asdasdasd',
+								is_active: false
+							}
+						]
+					}
+				],
 				org: [
 					{
 						name: 'Вилоят ҳокимлиги',

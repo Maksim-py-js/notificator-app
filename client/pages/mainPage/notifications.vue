@@ -120,7 +120,7 @@
 										</div>     
 										<div class="assignments__card_count">7/14</div>
 									</div>
-								</router-link>
+								</router-link >
 							</div>
 						</div>
 					</b-tab>

@@ -1794,6 +1794,11 @@ img {
 		width: vwSize(12);
 		font-size: 0;
 	}
+	&__modal-close {
+		display: block;
+		width: auto;
+		margin: vwSize(79) 0 0 auto;
+	}
 }
 .modal {
 	&__view {
