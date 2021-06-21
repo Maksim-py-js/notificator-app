@@ -3,7 +3,7 @@
 		<div class="contacts__cards_quantity">
 			<button 
 				class="btn router-link-active"
-				@click="groupModal = !groupModal"
+				@click="groupModal = true"
 			> 
 				Гурухлар
 			</button>
@@ -69,99 +69,85 @@
 				</div>
 			</button>
 		</div>
-		<div 
-			class="custom-modal" 
-			:active="`${groupModal}`"
-		 >
-			<div 
-				class="modal__view"
-				:active="`${groupModal}`"
-			>
-				<div 
-					class="modal__box"
-					:active="`${groupModal}`"
+		<pModal
+			title="Контактларни гурухлаш"
+			@closeModal="groupModal = false"
+			v-if="groupModal"
+		>
+			<div class="task-modal__search">
+				<input 
+					type="text" 
+					class="task-modal__search-input"
+					placeholder="Излаш" 
 				>
-					<div class="task-modal__head flex">
-						<h3 class="task-modal__title">Контактларни гурухлаш</h3>
-				    	<button 
-				    		class="task-modal__erase" 
-				    		@click="groupModal = !groupModal"
-				    	>
-							<div 
-								class="task-modal__erase-icon"
-								@click="groupModal = !groupModal"
-							>
-								<img 
-									src="@/assets/images/svg/deleteItem.svg" 
-									alt="close"
-									@click="groupModal = !groupModal"
-								>
-							</div>
-						</button>
-				    </div>
-				    <div class="task-modal__search">
-						<input 
-							type="text" 
-							class="task-modal__search-input"
-							placeholder="Излаш" 
-						>
-						<button class="task-modal__erase">
-							<div class="task-modal__erase-icon">
-								<img src="@/assets/images/svg/deleteItem.svg" alt="delete">
-							</div>
-						</button>
+				<button class="task-modal__erase">
+					<div class="task-modal__erase-icon">
+						<img src="@/assets/images/svg/deleteItem.svg" alt="delete">
 					</div>
-					<div class="group__table">
-						<ul class="group__job"> 
-							<li 
-								class="group__job-field"
-								v-for="job in jobs"
-								:key="job.index"
+				</button>
+			</div>
+			<div class="group__table">
+				<ul class="group__job"> 
+					<li 
+						class="group__job-field"
+						v-for="job in jobs"
+						:key="job.index"
+					>
+						<div 
+							class="group__job-item flex"
+							@click.self="job.is_active = !job.is_active"
+							:active="job.is_active.toString()"
+						>
+							<div class="group__job-box">
+								<span class="group__job-name">{{job.name}}</span>
+								<span class="group__job-count">{{job.users.length}}</span>
+							</div>
+							<div 
+								class="group__job-button"
+								:active="job.open"
+								@click.stop="job.open = !job.open;"
 							>
-								<div 
-									class="group__job-item flex"
-									@click.self="job.is_active = !job.is_active"
-									:active="job.is_active.toString()"
-								>
-									<div class="group__job-box">
-										<span class="group__job-name">{{job.name}}</span>
-										<span class="group__job-count">{{job.users.length}}</span>
-									</div>
-									<div 
-										class="group__job-button"
-										:active="job.open"
-										@click.stop="job.open = !job.open;"
-									>
-										<span v-if="job.open">-</span>
-										<span v-else="job.open">+</span>
-									</div>
+								<span v-if="job.open">-</span>
+								<span v-else="job.open">+</span>
+							</div>
 
-								</div>
-								<ul class="group__users" :active="job.open.toString()">
-									<li 
-										class="group__users-item"
-										v-for="user in job.users"
-										:key="user.index"
-									>
-										<div class="group__users-line"></div>
-										<div 
-											class="group__users-text"
-											@click.self="user.is_active = !user.is_active"
-											:active="user.is_active.toString()"
-										>{{user.name}}</div>
-									</li>
-								</ul>
+						</div>
+						<ul class="group__users" :active="job.open.toString()">
+							<li 
+								class="group__users-item"
+								v-for="user in job.users"
+								:key="user.index"
+							>
+								<div class="group__users-line"></div>
+								<div 
+									class="group__users-text"
+									@click.self="user.is_active = !user.is_active"
+									:active="user.is_active.toString()"
+								>{{user.name}}</div>
 							</li>
 						</ul>
-					</div>
+					</li>
+				</ul>
+			</div>
+			<div class="group__footer flex">
+				<div class="group__footer-text">
+					Гурух азолари сони <span class="number">2</span>
+				</div>
+				<div class="moderators_modal__footer_buttons">
+					<button class="moderators_modal__footer__button">Тозалаш</button>
+					<button class="moderators_modal__footer__button active">Сақлаш</button>
 				</div>
 			</div>
-		</div>
+		</pModal>
 	</div>
 </template>
 
 <script>
+	import pModal from '@/components/pModal'
 	export default {
+		components: {
+			pModal
+		},
 		data() {
 			return {
 				groupModal: false,

@@ -1,7 +1,7 @@
 <template>
 	<div class="assignments">
 		<div class="assignments__control">
-			<button class="btn" @click="taskModal = !taskModal">
+			<button class="btn" @click="taskModal = true">
 				<div class="btn_icon">
 					<img src="@/assets/images/svg/plus.svg" alt="add">
 				</div>
@@ -23,8 +23,8 @@
 						class="assignments__search"
 						v-model="serachText"
 						placeholder="Қидирув..." 
+						@input="search(newUnits, serachUnits, serachText)"
 					>
-					<!-- @input="search(newUnits, serachUnits, serachText)" -->
 				</div>
 				<div class="assignments__cards">
 					<div 
@@ -39,7 +39,7 @@
 							class="assignments__card"
 							v-for="card in unit.cards"
 							:key="card.index"
-							@click="cardModal = !cardModal"
+							@click="cardModal = true"
 						>
 							<div class="assignments__card_content">
 								<div class="assignments__card_top">
@@ -97,15 +97,16 @@
 					<input 
 						type="text" 
 						class="assignments__search"
-						v-model="serachText"
+						v-model="serachProcessText"
 						placeholder="Қидирув..." 
+						@input="search(processUnits, serachProcessUnits,  serachProcessText)"
 					>
 					<!-- @input="search(newUnits, serachUnits, serachText)" -->
 				</div>
 				<div class="assignments__cards">
 					<div 
 						class="assignments__units"
-						v-for="unit in processUnits"
+						v-for="unit in serachProcessUnits"
 						:key="unit.index"
 					>
 						<div class="assignments__units_date">
@@ -115,7 +116,7 @@
 							class="assignments__card"
 							v-for="card in unit.cards"
 							:key="card.index"
-							@click="cardModal = !cardModal"
+							@click="cardModal = true"
 						>
 							<div class="assignments__card_content">
 								<div class="assignments__card_top">
@@ -172,15 +173,15 @@
 					<input 
 						type="text" 
 						class="assignments__search"
-						v-model="serachText"
+						v-model="serachMadeText"
 						placeholder="Қидирув..." 
+						@input="search(madeUnits, serachMadeUnits,  serachMadeText)"
 					>
-					<!-- @input="search(newUnits, serachUnits, serachText)" -->
 				</div>
 				<div class="assignments__cards">
 					<div 
 						class="assignments__units"
-						v-for="unit in madeUnits"
+						v-for="unit in serachMadeUnits"
 						:key="unit.index"
 					>
 						<div class="assignments__units_date">
@@ -190,7 +191,7 @@
 							class="assignments__card"
 							v-for="card in unit.cards"
 							:key="card.index"
-							@click="cardModal = !cardModal"
+							@click="cardModal = true"
 						>
 							<div class="assignments__card_content">
 								<div class="assignments__card_top">
@@ -232,15 +233,16 @@
 					<input 
 						type="text" 
 						class="assignments__search"
-						v-model="serachText"
+						v-model="serachExpiredText"
 						placeholder="Қидирув..." 
+						@input="search(expiredUnits, serachExpiredUnits,  serachExpiredText)"
 					>
 					<!-- @input="search(newUnits, serachUnits, serachText)" -->
 
 					<div class="assignments__cards">
 						<div 
 							class="expired__card"
-							v-for="item in expiredUnits"
+							v-for="item in serachExpiredUnits"
 							:key="item.index" 
 						>
 							<div 
@@ -280,283 +282,238 @@
 				</div>
 			</div>
 		</div>
-		<div 
-			class="task-modal__view" 
-    		:active="`${taskModal}`" 
-		 >	
-			<div 
-				class="task-modal__content"
-    			:active="`${taskModal}`" 
-			    >
-			    <div class="task-modal__head flex">
-					<h3 class="task-modal__title">Топшириқ яратиш</h3>
-			    	<button 
-			    		class="task-modal__erase" 
-			    		@click="taskModal = !taskModal"
-			    	>
-						<div 
-							class="task-modal__erase-icon"
-							@click="taskModal = !taskModal"
-						>
-							<img 
-								src="@/assets/images/svg/deleteItem.svg" 
-								alt="close"
-								@click="taskModal = !taskModal"
-							>
-						</div>
-					</button>
-			    </div>
-				<div class="task-modal__inputs">
+		<pModal 
+			title="Топшириқ яратиш"
+			@closeModal="taskModal = false"
+			v-if="taskModal"
+		 >
+			<div class="task-modal__inputs">
+				<input 
+					type="text" 
+					placeholder="топшириқ номи" 
+					class="task-modal__name"
+				>
+				<div class="task-modal__input-box">
+					<div class="task-modal__input-name">Муддат</div>
 					<input 
-						type="text" 
-						placeholder="топшириқ номи" 
-						class="task-modal__name"
+						type="number" 
+						class="task-modal__count"
+						placeholder="6" 
 					>
-					<div class="task-modal__input-box">
-						<div class="task-modal__input-name">Муддат</div>
-						<input 
-							type="number" 
-							class="task-modal__count"
-							placeholder="6" 
-						>
-					</div>
-					<!-- <div class="task-modal__input-box">
-						<div class="task-modal__input-name">Кун</div>
-						<div
-							class="task-modal__date"
-						>
-							
-						</div>
-						<b-calendar
-					      :date-format-options="{ year: 'numeric', month: 'short', day: '2-digit', weekday: 'short' }"
-					      locale="en"
-					    ></b-calendar>
-					</div> -->
-					<div class="task-modal__input-box">
-						<div class="task-modal__input-name">Вақт</div>
-						<input 
-							type="time" 
-							class="task-modal__time"
-						>
-					</div>
 				</div>
-				<div class="task-modal__box flex">
-					<div class="task-modal__editor">
-						<h3 class="task-modal__title">Топшириқ матни</h3>
-						<div class="task-modal__text-field">
-							<textarea name="1230" id="1230" rows="10"></textarea>
-						</div>
-						<div 
-							class="file"
-							@click="chooseFile"
-						>
-							<input 
-								type="file" 
-								class="file__input"
-								ref="fileInput"
-								@change="onSelectFile"
-							>
-							<span class="file__text">
-								<div class="file__icon">
-									<img src="@/assets/images/svg/clip.svg" alt="slag">
-								</div>
-								Файл бириктириш
-							</span>
-						</div>
-						<ul>
-							<li 
-								class="selectedFile"
-								v-for="(file, index) in chooseFiles"
-								:key="index"
-							>
-								<span>{{file.name}}</span>
-								<button class="delFile">
-									<div @click="delFile(index)" class="delFile-icon">
-										<img src="@/assets/images/svg/deleteItem.svg" alt="delete">
-									</div>
-								</button>
-							</li>
-						</ul>
+				<!-- <div class="task-modal__input-box">
+					<div class="task-modal__input-name">Кун</div>
+					<div
+						class="task-modal__date"
+					>
+						
 					</div>
-					<div class="task-modal__data">
-						<div>
-							<div class="task-modal__search">
-	 							<input 
-									type="text" 
-									class="task-modal__search-input"
-									placeholder="Излаш" 
-								>
-								<button class="task-modal__erase">
-									<div class="task-modal__erase-icon">
-										<img src="@/assets/images/svg/deleteItem.svg" alt="delete">
-									</div>
-								</button>
-							</div>
-							<div class="group__table">
-								<ul class="group__job"> 
-									<li 
-										class="group__job-field"
-										v-for="job in jobs"
-										:key="job.index"
-									>
-										<div 
-											class="group__job-item flex"
-											@click.self="job.is_active = !job.is_active"
-											:active="job.is_active.toString()"
-										>
-											<div class="group__job-box">
-												<span class="group__job-name">{{job.name}}</span>
-												<span class="group__job-count">{{job.users.length}}</span>
-											</div>
-											<div 
-												class="group__job-button"
-												:active="job.open"
-												@click.stop="job.open = !job.open;"
-											>
-												<span v-if="job.open">-</span>
-												<span v-else="job.open">+</span>
-											</div>
-
-										</div>
-										<ul class="group__users" :active="job.open.toString()">
-											<li 
-												class="group__users-item"
-												v-for="user in job.users"
-												:key="user.index"
-											>
-												<div class="group__users-line"></div>
-												<div 
-													class="group__users-text"
-													@click.self="user.is_active = !user.is_active"
-													:active="user.is_active.toString()"
-												>{{user.name}}</div>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="moderators_modal__footer_buttons">
-							<button class="moderators_modal__footer__button">Тозалаш</button>
-							<button class="moderators_modal__footer__button active">Сақлаш</button>
-						</div>
-					</div>
+					<b-calendar
+				      :date-format-options="{ year: 'numeric', month: 'short', day: '2-digit', weekday: 'short' }"
+				      locale="en"
+				    ></b-calendar>
+				</div> -->
+				<div class="task-modal__input-box">
+					<div class="task-modal__input-name">Вақт</div>
+					<input 
+						type="time" 
+						class="task-modal__time"
+					>
 				</div>
 			</div>
-		</div>
-		<div 
-			class="custom-modal" 
-			:active="`${cardModal}`"
-		>
-			<div 
-				class="modal__view"
-				:active="`${cardModal}`"
-			>
-				<div 
-					class="modal__box"
-					:active="`${cardModal}`"
-				>
-					<div class="task-modal__head flex">
-						<h3 class="task-modal__title">Янги</h3>
-				    	<button 
-				    		class="task-modal__erase" 
-				    		@click="cardModal = !cardModal"
-				    	>
-							<div 
-								class="task-modal__erase-icon"
-								@click="cardModal = !cardModal"
-							>
-								<img 
-									src="@/assets/images/svg/deleteItem.svg" 
-									alt="close"
-									@click="cardModal = !cardModal"
-								>
+			<div class="task-modal__box flex">
+				<div class="task-modal__editor">
+					<h3 class="task-modal__title">Топшириқ матни</h3>
+					<div class="task-modal__text-field">
+						<textarea name="1230" id="1230" rows="10"></textarea>
+					</div>
+					<div 
+						class="file"
+						@click="chooseFile"
+					>
+						<input 
+							type="file" 
+							class="file__input"
+							ref="fileInput"
+							@change="onSelectFile"
+						>
+						<span class="file__text">
+							<div class="file__icon">
+								<img src="@/assets/images/svg/clip.svg" alt="slag">
 							</div>
-						</button>
-				    </div>
-				    <div 
-						class="assignments__card"
-					 >
-						<div class="assignments__card_content">
-							<div class="assignments__card_top">
-								<div class="assignments__card_time">21.04.2021 12:45</div>
-								<div class="assignments__card_number">
-									Хабарнома № 8
-									<div 
-										class="assignments__card_icon"
-									>
-										<img src="@/assets/images/svg/pen.svg" alt="pen">
-									</div>
-								</div>
-							</div>
-							<h3 class="assignments__card_name">
-								* Аппарат йиғилиши
-							</h3>
-							<p class="assignments__card_text">
-								Бир ҳафта муддатда 7-сонли ташриф баёнинига асосан қабул қилиниши белгиланган қарор лойиҳаларининг ҳар бирига масъулларни бириктириш ва доимий тарзда назорат ўрнатиш вазифалари юклатилсин
-							</p>
-						</div>
-						<div class="assignments__card_footer">
-							<button 
-								class="assignments__file_btn" 
-							>
-								<div class="assignments__file_icon">
-									<img src="@/assets/images/svg/clip.svg" alt="clip">
-								</div>
-								<div class="assignments__file_text">
-									илова
+							Файл бириктириш
+						</span>
+					</div>
+					<ul>
+						<li 
+							class="selectedFile"
+							v-for="(file, index) in chooseFiles"
+							:key="index"
+						>
+							<span>{{file.name}}</span>
+							<button class="delFile">
+								<div @click="delFile(index)" class="delFile-icon">
+									<img src="@/assets/images/svg/deleteItem.svg" alt="delete">
 								</div>
 							</button>
-							<div class="flex">
-								<div class="assignments__progress bigCard">
-									<div class="assignments__progress_count" style="width: 100%">
-										100%
-									</div>
-								</div>     
-								<div class="assignments__card_count">7/14</div> 
-							</div>
-							<div class="assignments__card_lable">
-								Архивга
-							</div>
-						</div>
-					</div>
-					<div class="table">
-						<div class="table__td table__discription">
-							<div class="table__discription_item">Дастур</div>
-							<div class="table__discription_item">СМС</div>
-						</div>
-						<div class="table__td table__head">
-							<div class="table__title nameTr">Ф.И.О</div>
-							<div class="table__title positionTr">Ташкилот номи</div>
-							<div class="table__title dateTr">Етказилди</div>
-							<div class="table__title dateTr">Танишди</div>
-							<div class="table__title dateTr">Юборилди</div>
-							<div class="table__title dateTr">Танишди</div>
-						</div>
-						<div class="table__border scroll">
-							<div 
-								class="table__td table__data"
-								v-for="item in tableData"
-								:key="item.index"
+						</li>
+					</ul>
+				</div>
+				<div class="task-modal__data">
+					<div>
+						<div class="task-modal__search">
+ 							<input 
+								type="text" 
+								class="task-modal__search-input"
+								placeholder="Излаш" 
 							>
-								<div class="nameData nameTr">{{item.name}}</div>
-								<div class="positionData positionTr">{{item.position}}</div>
-								<div class="dateData dateTr">{{item.delivered}}</div>
-								<div class="dateData dateTr borderTr">{{item.met}}</div>
-								<div class="dateData dateTr">{{item.sent}}</div>
-								<div class="dateData dateTr">{{item.smsMet}}</div>
-							</div>
+							<button class="task-modal__erase">
+								<div class="task-modal__erase-icon">
+									<img src="@/assets/images/svg/deleteItem.svg" alt="delete">
+								</div>
+							</button>
+						</div>
+						<div class="group__table">
+							<ul class="group__job"> 
+								<li 
+									class="group__job-field"
+									v-for="job in jobs"
+									:key="job.index"
+								>
+									<div 
+										class="group__job-item flex"
+										@click.self="job.is_active = !job.is_active"
+										:active="job.users.some(elem => elem.is_active == true) && job.is_active"
+									>
+										<div class="group__job-box">
+											<span class="group__job-name" @click.self="job.is_active = !job.is_active">{{job.name}}</span>
+											<span class="group__job-count" @click.self="job.is_active = !job.is_active">{{job.users.length}}</span>
+										</div>
+										<div 
+											class="group__job-button"
+											:active="job.open"
+											@click.stop="job.open = !job.open"
+										>
+											<span v-if="job.open">-</span>
+											<span v-else="job.open">+</span>
+										</div>
+
+									</div>
+									<ul class="group__users" :active="job.open.toString()">
+										<li 
+											class="group__users-item"
+											v-for="user in job.users"
+											:key="user.index"
+										>
+											<div class="group__users-line"></div>
+											<div 
+												class="group__users-text"
+												@click.self="() => {user.is_active = !user.is_active; user.is_active ? selectedPersons.push(user) : selectedPersons.splice(user.index, 0); selectItem()}"
+												:active="user.is_active.toString()"
+											>{{user.name}}</div>
+										</li>
+									</ul>
+								</li>
+							</ul>
 						</div>
 					</div>
-					<button class="assignments__modal-close btn light" @click="cardModal = !cardModal">Ёпиш</button>
+					<div class="moderators_modal__footer_buttons">
+						<button class="moderators_modal__footer__button">Тозалаш</button>
+						<button class="moderators_modal__footer__button active">Сақлаш</button>
+					</div>
 				</div>
 			</div>
-		</div>
+		</pModal>
+		<pModal 
+			@closeModal="cardModal = false"
+			title="Янги"
+			v-if="cardModal"
+		 >
+		    <div 
+				class="assignments__card"
+			 >
+				<div class="assignments__card_content">
+					<div class="assignments__card_top">
+						<div class="assignments__card_time">21.04.2021 12:45</div>
+						<div class="assignments__card_number">
+							Хабарнома № 8
+							<div 
+								class="assignments__card_icon"
+							>
+								<img src="@/assets/images/svg/pen.svg" alt="pen">
+							</div>
+						</div>
+					</div>
+					<h3 class="assignments__card_name">
+						* Аппарат йиғилиши
+					</h3>
+					<p class="assignments__card_text">
+						Бир ҳафта муддатда 7-сонли ташриф баёнинига асосан қабул қилиниши белгиланган қарор лойиҳаларининг ҳар бирига масъулларни бириктириш ва доимий тарзда назорат ўрнатиш вазифалари юклатилсин
+					</p>
+				</div>
+				<div class="assignments__card_footer">
+					<button 
+						class="assignments__file_btn" 
+					>
+						<div class="assignments__file_icon">
+							<img src="@/assets/images/svg/clip.svg" alt="clip">
+						</div>
+						<div class="assignments__file_text">
+							илова
+						</div>
+					</button>
+					<div class="flex">
+						<div class="assignments__progress bigCard">
+							<div class="assignments__progress_count" style="width: 100%">
+								100%
+							</div>
+						</div>     
+						<div class="assignments__card_count">7/14</div> 
+					</div>
+					<div class="assignments__card_lable">
+						Архивга
+					</div>
+				</div>
+			</div>
+			<div class="table">
+				<div class="table__td table__discription">
+					<div class="table__discription_item">Дастур</div>
+					<div class="table__discription_item">СМС</div>
+				</div>
+				<div class="table__td table__head">
+					<div class="table__title nameTr">Ф.И.О</div>
+					<div class="table__title positionTr">Ташкилот номи</div>
+					<div class="table__title dateTr">Етказилди</div>
+					<div class="table__title dateTr">Танишди</div>
+					<div class="table__title dateTr">Юборилди</div>
+					<div class="table__title dateTr">Танишди</div>
+				</div>
+				<div class="table__border scroll">
+					<div 
+						class="table__td table__data"
+						v-for="item in tableData"
+						:key="item.index"
+					>
+						<div class="nameData nameTr">{{item.name}}</div>
+						<div class="positionData positionTr">{{item.position}}</div>
+						<div class="dateData dateTr">{{item.delivered}}</div>
+						<div class="dateData dateTr borderTr">{{item.met}}</div>
+						<div class="dateData dateTr">{{item.sent}}</div>
+						<div class="dateData dateTr">{{item.smsMet}}</div>
+					</div>
+				</div>
+			</div>
+			<button class="assignments__modal-close btn light" @click="cardModal = false">Ёпиш</button>
+		</pModal>
 	</div>
 </template>
 
 <script>
+	import pModal from '@/components/pModal'
 	export default {
+		components: {
+			pModal
+		},
 		data() {
 			return {
 				cardModal: false,
@@ -571,7 +528,7 @@
 
 				taskModal: false,
 				activeMore: false,
-				serachText: '',
+				// new units column
 				newUnits: [
 					{
 						date: "2021 й 20 апрел",
@@ -618,55 +575,12 @@
 								text: "Бир ҳафта муддатда 7-сонли ташриф баёнинига асосан қабул қилиниши белгиланган қарор лойиҳаларининг ҳар бирига масъулларни ........"
 							}
 						]
-					},
-					{
-						date: "2021 й 20 апрел",
-						cards: [
-							{
-								number: 8,
-								time: "12:08",
-								name: "Аппарат йиғилишида баёни",
-								text: "Бир ҳафта муддатда 7-сонли ташриф баёнинига асосан қабул қилиниши белгиланган қарор лойиҳаларининг ҳар бирига масъулларни ........"
-							},
-							{
-								number: 7,
-								time: "08:00",
-								name: "Аппарат йиғилишида баёни",
-								text: "Бир ҳафта муддатда 7-сонли ташриф баёнинига асосан қабул қилиниши белгиланган қарор лойиҳаларининг ҳар бирига масъулларни ........"
-							},
-							{
-								number: 6,
-								time: "17:21",
-								name: "Аппарат йиғилишида баёни",
-								text: "Бир ҳафта муддатда 7-сонли ташриф баёнинига асосан қабул қилиниши белгиланган қарор лойиҳаларининг ҳар бирига масъулларни ........"
-							}
-						]
-					},
-					{
-						date: "2021 й 20 апрел",
-						cards: [
-							{
-								number: 8,
-								time: "12:08",
-								name: "Аппарат йиғилишида баёни",
-								text: "Бир ҳафта муддатда 7-сонли ташриф баёнинига асосан қабул қилиниши белгиланган қарор лойиҳаларининг ҳар бирига масъулларни ........"
-							},
-							{
-								number: 7,
-								time: "08:00",
-								name: "Аппарат йиғилишида баёни",
-								text: "Бир ҳафта муддатда 7-сонли ташриф баёнинига асосан қабул қилиниши белгиланган қарор лойиҳаларининг ҳар бирига масъулларни ........"
-							},
-							{
-								number: 6,
-								time: "17:21",
-								name: "Аппарат йиғилишида баёни",
-								text: "Бир ҳафта муддатда 7-сонли ташриф баёнинига асосан қабул қилиниши белгиланган қарор лойиҳаларининг ҳар бирига масъулларни ........"
-							}
-						]
 					}
 				],
 				serachUnits: [],
+				serachText: '',
+
+				// process units column
 				processUnits: [
 					{
 						date: "2021 й 20 апрел",
@@ -773,13 +687,17 @@
 						]
 					}
 				],
+				serachProcessUnits: [],
+				serachProcessText: '',
+
+				// made units column
 				madeUnits: [
 					{
 						date: "2021 й 20 апрел",
 						cards: [
 							{
 								number: "2",
-								name: "Аппарат йиғилишида баёни",
+								name: "Аппарат йиғилишида баёни павлик",
 								time: "09:40",
 								madeDate: "20.04.21 й"
 							},
@@ -844,6 +762,10 @@
 						]
 					}
 				],
+				serachMadeUnits: [],
+				serachMadeText: '',
+
+				// new units column
 				expiredUnits: [
 					{
 						name: "Махмудов Сирожиддин Адхамович",
@@ -1273,6 +1195,10 @@
 						]
 					}
 				],
+				serachExpiredUnits: [],
+				serachExpiredText: '',
+
+				selectedPersons: [],
 				jobs: [
 					{
 						name: 'xzczxczxcz',
@@ -1586,38 +1512,37 @@
 		},
 		mounted() {
 			this.serachUnits = [...this.newUnits];
+			this.serachProcessUnits = [...this.processUnits];
+			this.serachMadeUnits = [...this.madeUnits];
+			this.serachExpiredUnits = [...this.expiredUnits];
 		},
 		methods: {
 			search(arr, searchArr, searchValue) {
+				let newObj = {
+					date: '',
+					cards: []
+				};
 				if(searchValue != '') {
-					// console.log(searchArr);
-					searchArr.forEach(date => {
-						
+					searchArr.splice(0, searchArr.length);
+					arr.forEach(date => {
+						date.cards.forEach(card => {
+							if(card.name?.toString().search(searchValue) != -1 || card.time?.toString().search(searchValue) != -1 || card.text?.toString().search(searchValue) != -1) {
+								newObj.date = date.date.toString();
+								newObj.cards.push(card);
+								searchArr.push(newObj);
+							} else {
+								console.log('нету');
+							}
+						});
 					});
 				} else {
 					searchArr = [...arr];
+					console.log(searchArr);
 				}
-
-				// this.serachUnits = [...arr];
-				// if(this.serachText != '') {
-				// 	this.serachUnits.splice(0, this.serachUnits.length)
-				// 	arr.forEach(date => {
-				// 		date.cards.forEach(card => {
-				// 			if(card.name.toString().search(this.serachText) != -1 || card.time.toString().search(this.serachText) != -1 || card.text.toString().search(this.serachText) != -1) {
-				// 				date.cards.push(card);
-				// 				this.serachUnits.push(date);
-
-				// 			} 
-				// 		});
-				// 	});
-				// } else {
-				// 	this.serachUnits.push(...arr);
-				// }
-
 			},
 
 			chooseFile () {
-              this.$refs.fileInput.click();
+                this.$refs.fileInput.click();
             },
             onSelectFile () {
                 const input = this.$refs.fileInput;
@@ -1640,6 +1565,33 @@
             },
             getFiles() {
             	console.log('clik')
+            },
+
+            selectItem(arr, value) {
+           //  	if(value && arr.some(elem => elem.is_active == false)) {
+           //  		arr.forEach(item => {
+           //  			item = true;
+           //  			return true;
+           //  		})
+           //  	} else if (!value && arr.some(elem => elem.is_active == true)) {
+           //  		arr.forEach(item => {
+           //  			item = false;
+           //  			return false;
+           //  		})
+           //  	} else if (!value && arr.some(elem => elem.is_active == false)) {
+           //  		arr.forEach(item => {
+           //  			item = false;
+           //  			return false;
+           //  		})
+           //  	} else if (value && arr.some(elem => elem.is_active == true)) {
+           //  		arr.forEach(item => {
+           //  			item = true;
+           //  			return true;
+           //  		})
+           //  	} else {
+        			// console.log('else')
+           //  	}
+           		console.log(this.selectedPersons);
             }
 		}
 	}

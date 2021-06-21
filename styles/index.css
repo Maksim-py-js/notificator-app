@@ -50,7 +50,7 @@ img {
 .btn, .flex, .table__td, .main_admin__header, .main_admin__header-nav, .main_admin__data, .main_admin__tableBorder, .main_admin__tables_head, .main_admin__tables_nav, .main_admin__td_box, .main_admin__table_options, .main_admin__quantity_item, .main_admin__table_content, .main_admin__right_data, .moderators_modal__header, .moderators_modal__inputs, .moderators_modal__modals, .moderators_modal__footer, .moderators_modal__switch, .section__header, .section__form, .section__footer, .contact__header, .contact__inputs, .contact__footer, .contact__switch, .form__input_group, .form__footer, .header, .header__item, .assignments__tabels, .assignments__title_box, .assignments__card_top, .assignments__card_number, .assignments__card_footer, .assignments__file_btn, .assignments__card_date, .assignments .expired__table_item, .task-modal__inputs, .task-modal__input-box, .task-modal__box, .task-modal__box .moderators_modal__footer_buttons, .task-modal__search, .group__users-item, .notifications__content, .contacts__head, .contacts__head_buttons, .contacts__cards_quantity, .contacts__group_head, .contacts__cards, .contacts__position, .contacts__phone, .contacts__cards_pagination {
   display: flex; }
 
-.table__td, .main_admin__header, .main_admin__header-nav, .main_admin__data, .main_admin__tableBorder, .main_admin__tables_head, .main_admin__tables_nav, .main_admin__table_options, .main_admin__table_content, .moderators_modal__header, .moderators_modal__inputs, .moderators_modal__footer, .section__header, .section__form, .section__footer, .contact__header, .contact__inputs, .contact__footer, .form__footer, .header, .assignments__tabels, .assignments__card_top, .assignments__card_footer, .assignments .expired__table_item, .task-modal__head, .task-modal__box, .task-modal__search, .group__job-item, .notifications__content, .contacts__head, .contacts__cards, .contacts__phone {
+.table__td, .main_admin__header, .main_admin__header-nav, .main_admin__data, .main_admin__tableBorder, .main_admin__tables_head, .main_admin__tables_nav, .main_admin__table_options, .main_admin__table_content, .moderators_modal__header, .moderators_modal__inputs, .moderators_modal__footer, .section__header, .section__form, .section__footer, .contact__header, .contact__inputs, .contact__footer, .form__footer, .header, .assignments__tabels, .assignments__card_top, .assignments__card_footer, .assignments .expired__table_item, .task-modal__box, .task-modal__search, .modal__head, .group__job-item, .group__footer, .notifications__content, .contacts__head, .contacts__cards, .contacts__phone {
   justify-content: space-between; }
 
 .btn, .flex, .table__td, .main_admin__header, .main_admin__header-nav, .main_admin__data, .main_admin__tables_head, .main_admin__tables_nav, .main_admin__table_tr, .main_admin__user_table_tr, .main_admin__td_box, .main_admin__table_options, .main_admin__quantity_item, .main_admin__table_content, .main_admin__right_data, .moderators_modal__header, .moderators_modal__inputs, .moderators_modal__modals, .moderators_modal__footer, .moderators_modal__switch, .section__header, .section__form, .section__footer, .contact__header, .contact__footer, .contact__switch, .form__input_group, .form__footer, .header, .header__item, .assignments__title_box, .assignments__card_top, .assignments__card_number, .assignments__card_footer, .assignments__file_btn, .assignments__card_date, .assignments .expired__table_item, .task-modal__inputs, .task-modal__input-box, .task-modal__search, .group__users-item, .contacts__head, .contacts__head_buttons, .contacts__cards_quantity, .contacts__group_head, .contacts__cards, .contacts__position, .contacts__cards_pagination {
@@ -1491,71 +1491,6 @@ img {
   width: auto;
   margin: 4.03061vw 0 0 auto; }
 
-.modal__view {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(196, 196, 196, 0.4);
-  opacity: 0;
-  z-index: -1;
-  transition: 0.5s;
-  overflow: auto;
-  display: block;
-  padding: 5.10204vw 0; }
-
-.modal__view[active="true"] {
-  opacity: 1;
-  z-index: 1000;
-  transition: 0.5s; }
-
-.modal__box {
-  width: 77.44898vw;
-  margin: 0 auto;
-  background: #FFFFFF;
-  border: 0.05102vw solid #FFFFFF;
-  box-sizing: border-box;
-  box-shadow: 0.5102vw 0.5102vw 1.02041vw 0.5102vw rgba(0, 0, 0, 0.15);
-  border-radius: 0.5102vw;
-  opacity: 0;
-  z-index: -1;
-  transition: 0.5s;
-  padding: 1.53061vw 2.80612vw 1.83673vw 3.92857vw; }
-
-.modal__box[active="true"] {
-  opacity: 1;
-  z-index: 1000;
-  transition: 0.5s; }
-
-.modal .assignments__card_text {
-  min-height: 6.17347vw; }
-
-.task-modal__head {
-  width: 100%; }
-
-.task-modal textarea {
-  width: 100%; }
-
-.task-modal__view {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(196, 196, 196, 0.4);
-  opacity: 0;
-  z-index: -1;
-  transition: 0.5s;
-  overflow: auto;
-  display: block;
-  padding: 5.10204vw 0; }
-
-.task-modal__view[active="true"] {
-  opacity: 1;
-  z-index: 1000;
-  transition: 0.5s; }
-
 .task-modal__content {
   width: 90.5102vw;
   margin: 0 auto;
@@ -1564,24 +1499,8 @@ img {
   box-sizing: border-box;
   box-shadow: 0.5102vw 0.5102vw 1.02041vw 0.5102vw rgba(0, 0, 0, 0.15);
   border-radius: 0.5102vw;
-  opacity: 0;
-  z-index: -1;
   transition: 0.5s;
   padding: 1.53061vw 2.80612vw 1.83673vw 3.92857vw; }
-
-.task-modal__content[active="true"] {
-  opacity: 1;
-  z-index: 1000;
-  transition: 0.5s; }
-
-.task-modal__title {
-  font-family: "Rubik";
-  font-weight: 500;
-  color: #7F7F84;
-  font-size: 1.83673vw;
-  line-height: 2.19388vw;
-  margin-bottom: 0.86735vw;
-  padding: 1.07143vw 0 0.30612vw; }
 
 .task-modal__name {
   background: #FDFCFC;
@@ -1656,6 +1575,49 @@ img {
 
 .task-modal__data {
   width: 35.96939vw; }
+
+.modal__head {
+  width: 100%; }
+
+.modal__view {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(196, 196, 196, 0.4);
+  opacity: 1;
+  z-index: 1;
+  transition: 0.5s;
+  overflow: auto;
+  display: block;
+  padding: 5.10204vw 0; }
+
+.modal__box {
+  width: 77.44898vw;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border: 0.05102vw solid #FFFFFF;
+  box-sizing: border-box;
+  box-shadow: 0.5102vw 0.5102vw 1.02041vw 0.5102vw rgba(0, 0, 0, 0.15);
+  border-radius: 0.5102vw;
+  opacity: 1;
+  z-index: 1;
+  transition: 0.5s;
+  padding: 1.53061vw 2.80612vw 1.83673vw 3.92857vw; }
+
+.modal__title {
+  font-family: "Rubik";
+  font-weight: 500;
+  color: #7F7F84;
+  font-size: 1.83673vw;
+  line-height: 2.19388vw;
+  margin-bottom: 0.86735vw;
+  padding: 1.07143vw 0 0.30612vw; }
+
+.modal__close-icon {
+  width: 1.63265vw;
+  font-size: 0; }
 
 .group__table {
   min-height: 56.12245vw;
@@ -1741,6 +1703,21 @@ img {
 .group__users-text[active="true"] {
   background: #33CCCC !important;
   color: #FFFFFF; }
+
+.group__footer-text {
+  font-family: "Rubik";
+  font-weight: 400;
+  color: #4C4C54;
+  font-size: 1.42857vw;
+  line-height: 1.68367vw; }
+
+.group__footer-text span {
+  font-family: "Rubik";
+  font-weight: 500;
+  color: #959599;
+  font-size: 1.12245vw;
+  line-height: 1.32653vw;
+  margin: 0 0 0 1.32653vw; }
 
 .file {
   margin-bottom: 0.91837vw; }

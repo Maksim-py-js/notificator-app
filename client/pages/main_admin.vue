@@ -555,6 +555,7 @@
 		components: {
 			date
 		},
+		layout: 'main',
 	    data() {
 	      	return {
 	      		active: true,
